@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct LevelTemplate {
-    pub unit: String,
+    pub name: String,
     pub rows: i32,
     pub columns: i32,
     pub addresses: Vec<u32>,
@@ -12,14 +12,14 @@ pub struct LevelTemplate {
 
 impl LevelTemplate {
     pub fn new(
-        unit: &str,
+        name: &str,
         rows: i32,
         columns: i32,
         addresses: Vec<u32>,
         electrics: Vec<Electric>,
     ) -> Self {
         Self {
-            unit: unit.to_owned(),
+            name: name.to_owned(),
             rows,
             columns,
             addresses,
