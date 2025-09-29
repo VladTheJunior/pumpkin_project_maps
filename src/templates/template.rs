@@ -10,11 +10,9 @@ pub struct Template {
 }
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
 pub struct MapContent {
-    pub object_id: u32,
-    pub unit_id: u32,
-    pub netowrk_id: u32,
+    pub object_id: u8,
+    pub unit_id: u8,
+    pub netowrk_id: u8,
     pub level_id: u8,
-    pub row: u8,
-    pub column: u8,
     pub is_dhcp: bool,
 }
