@@ -1,4 +1,4 @@
-use std::collections::HashSet;
+use std::collections::HashMap;
 
 use super::object_template::ObjectTemplate;
 use serde::{Deserialize, Serialize};
@@ -6,28 +6,15 @@ use serde::{Deserialize, Serialize};
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct Template {
     pub objects: Vec<ObjectTemplate>,
+    pub content: HashMap<u32, MapContent>,
 }
-
-impl Template {
-    pub fn fetch_known_ips(&self) -> HashSet<u32> {
-        let mut ips = HashSet::new();
-        for object in &self.objects {
-            let a = object.id.to_be_bytes()[0];
-            let b = object.id.to_be_bytes()[1];
-            for unit in &object.units {
-                for network in &unit.networks {
-                    for level in &network.levels {
-                        ips.extend(level.addresses.iter().filter_map(|d| {
-                            if *d == 0 {
-                                None
-                            } else {
-                                Some(u32::from_be_bytes([a, b, network.id, *d]))
-                            }
-                        }));
-                    }
-                }
-            }
-        }
-        return ips;
-    }
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
+pub struct MapContent {
+    pub object_id: u32,
+    pub unit_id: u32,
+    pub netowrk_id: u32,
+    pub level_id: u8,
+    pub row: u8,
+    pub column: u8,
+    pub is_dhcp: bool,
 }
