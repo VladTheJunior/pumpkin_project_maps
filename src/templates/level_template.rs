@@ -6,7 +6,7 @@ pub struct LevelTemplate {
     pub name: String,
     pub rows: i32,
     pub columns: i32,
-    pub addresses: Vec<u32>,
+    pub addresses: Vec<(u32, bool)>,
     pub electrics: Vec<Electric>,
 }
 
@@ -15,7 +15,7 @@ impl LevelTemplate {
         name: &str,
         rows: i32,
         columns: i32,
-        addresses: Vec<u32>,
+        addresses: Vec<(u32, bool)>,
         electrics: Vec<Electric>,
     ) -> Self {
         Self {

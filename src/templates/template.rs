@@ -14,5 +14,4 @@ pub struct MapContent {
     pub unit_id: u8,
     pub netowrk_id: u8,
     pub level_id: u8,
-    pub is_dhcp: bool,
 }
