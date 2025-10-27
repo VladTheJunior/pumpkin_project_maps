@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::BTreeMap;
 
 use super::object_template::ObjectTemplate;
 use serde::{Deserialize, Serialize};
@@ -6,7 +6,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct Template {
     pub objects: Vec<ObjectTemplate>,
-    pub content: HashMap<u32, MapContent>,
+    pub content: BTreeMap<u32, MapContent>,
 }
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
 pub struct MapContent {
